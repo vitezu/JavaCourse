@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Jdbc:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Jdbc_jar</output-path>
+    <root id="archive" name="Jdbc.jar">
+      <element id="module-output" name="Jdbc" />
+      <element id="module-output" name="Entity" />
+      <element id="module-output" name="Dao" />
+      <element id="module-output" name="Connection" />
+      <element id="module-output" name="Service" />
+      <element id="module-output" name="Main" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
