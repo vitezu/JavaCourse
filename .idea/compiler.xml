@@ -13,6 +13,7 @@
         <module name="ImplDao" />
         <module name="Main" />
         <module name="Service" />
+        <module name="Services" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,7 @@
       <module name="Jdbc" target="1.5" />
       <module name="Main" target="1.5" />
       <module name="Service" target="1.5" />
+      <module name="Services" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

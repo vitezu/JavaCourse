@@ -14,7 +14,7 @@
         <module>Connection</module>
         <module>DaoImplements</module>
         <module>Main</module>
-        <module>ImplDao</module>
+        <module>Services</module>
     </modules>
 
     <dependencies>
