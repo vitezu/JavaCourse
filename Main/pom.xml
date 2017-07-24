@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.InteliSoft.Jdbc</groupId>
-            <artifactId>Service</artifactId>
+            <artifactId>DaoImplements</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
