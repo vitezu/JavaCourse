@@ -12,7 +12,7 @@
         <module>Entity</module>
         <module>Dao</module>
         <module>Connection</module>
-        <module>Service</module>
+        <module>DaoImplements</module>
         <module>Main</module>
         <module>ImplDao</module>
     </modules>
