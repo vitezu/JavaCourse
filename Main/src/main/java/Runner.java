@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Pavel on 09.07.2017.
  */
-public class Main {
+public class Runner {
 
     public static void main(String[] args) {
 
