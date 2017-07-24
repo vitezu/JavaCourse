@@ -15,11 +15,17 @@ import java.util.List;
  */
 public class StudentsDaoImpl implements StudentsDao {
     private final Logger logger = Logger.getLogger(StudentsDaoImpl.class);
+    private final String addStudents = "INSERT INTO students (idStudents, firstName, lastName, age, birth, phone, idGroup) VALUES (?,?,?,?,?,?,?)";
+    private final String getAllStudents = "Select idStudents, firstName, lastName, age, birth, phone from students";
+    private final String getByIdStudents = "SELECT * FROM students where idStudents=?";
+    private final String updateStudents = "UPDATE students SET  firstName=?, lastName=?, age=?, birth=?, phone=?, idGroup=? where idStudents=?";
+    private final String deleteStudents = "DELETE  FROM students where idStudents=?";
+    private final String getWithGroup = "SELECT  students.firstName, students.lastName, groups.teacher  FROM students inner join groups ON students.idGroup = groups.idGroup where groups.idGroup = 3";
+
     Connection conn = DBConnection.getDBConnection();
 
     public void add(StudentsEntity students) {
         PreparedStatement prst = null;
-        String addStudents = "INSERT INTO students (idStudents, firstName, lastName, age, birth, phone, idGroup) VALUES (?,?,?,?,?,?,?)";
         try {
             GroupEntity group = new GroupEntity();
             group.setIdGroup(3);
@@ -48,7 +54,6 @@ public class StudentsDaoImpl implements StudentsDao {
     public List<StudentsEntity> getAll() {
         List<StudentsEntity> studentsList = new ArrayList<StudentsEntity>();
         Statement st = null;
-        String getAllStudents = "Select idStudents, firstName, lastName, age, birth, phone from students";
         ResultSet rs = null;
         try {
             st = conn.createStatement();
@@ -80,7 +85,6 @@ public class StudentsDaoImpl implements StudentsDao {
 
     public StudentsEntity getById(int idStudents) {
         PreparedStatement prst = null;
-        String getByIdStudents = "SELECT * FROM students where idStudents=?";
         StudentsEntity students = new StudentsEntity();
 
         try {
@@ -112,7 +116,6 @@ public class StudentsDaoImpl implements StudentsDao {
 
     public void update(StudentsEntity students, Connection conn) {
         PreparedStatement prst = null;
-        String updateStudents = "UPDATE students SET  firstName=?, lastName=?, age=?, birth=?, phone=?, idGroup=? where idStudents=?";
         try {
             GroupEntity group = new GroupEntity();
             group.setIdGroup(3);
@@ -141,7 +144,6 @@ public class StudentsDaoImpl implements StudentsDao {
 
     public void delete(int idStudents, Connection conn) {
         PreparedStatement prst = null;
-        String deleteStudents = "DELETE  FROM students where idStudents=?";
         try {
             prst = conn.prepareStatement(deleteStudents);
             prst.setInt(1, idStudents);
@@ -166,7 +168,6 @@ public class StudentsDaoImpl implements StudentsDao {
         Statement statement = null;
         try {
             statement = conn.createStatement();
-            String getWithGroup = "SELECT  students.firstName, students.lastName, groups.teacher  FROM students inner join groups ON students.idGroup = groups.idGroup where groups.idGroup = 3";
             ResultSet rs = statement.executeQuery(getWithGroup);
             while (rs.next()) {
                 students.setFirstName(rs.getString("firstName"));

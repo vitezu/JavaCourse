@@ -15,11 +15,17 @@ import java.util.List;
  */
 public class GroupDaoImpl implements GroupDao {
     private final Logger logger = Logger.getLogger(GroupDaoImpl.class);
+    private final String addGroup = "INSERT INTO groups (idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud) VALUES (?,?,?,?,?,?)";
+    private final String getAllGroups = "Select idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud from groups ";
+    private final String getByIdGroup = "SELECT idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud FROM groups where idGroup=?";
+    private final String updateGroup = "UPDATE groups SET  nameGroup=?, teacher=?, groupRoom=?, specialSubj=?, counStud=? where idGroup=?";
+    private final String deleteGroup = "DELETE FROM groups where idGroup=?";
+    private final String getWithStudents = "SELECT  groups.nameGroup, groups.teacher, students.firstName, students.lastName FROM groups inner join students ON students.idGroup = groups.idGroup where groups.idGroup = 3";
+
     Connection conn = DBConnection.getDBConnection();
 
     public void add(GroupEntity group) {
         PreparedStatement prst = null;
-        String addGroup = "INSERT INTO groups (idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud) VALUES (?,?,?,?,?,?)";
         try {
             prst = conn.prepareStatement(addGroup);
             prst.setInt(1, group.getIdGroup());
@@ -45,7 +51,6 @@ public class GroupDaoImpl implements GroupDao {
     public List<GroupEntity> getAll() {
         List<GroupEntity> list = new ArrayList<GroupEntity>();
         Statement st = null;
-        String getAllGroups = "Select idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud from groups ";
         ResultSet rs = null;
         try {
             st = conn.createStatement();
@@ -76,7 +81,6 @@ public class GroupDaoImpl implements GroupDao {
 
     public GroupEntity getById(int idGroup) {
         PreparedStatement prst = null;
-        String getByIdGroup = "SELECT idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud FROM groups where idGroup=?";
         GroupEntity group = new GroupEntity();
         try {
             prst = conn.prepareStatement(getByIdGroup);
@@ -107,7 +111,6 @@ public class GroupDaoImpl implements GroupDao {
 
     public void update(GroupEntity group, Connection conn) {
         PreparedStatement prst = null;
-        String updateGroup = "UPDATE groups SET  nameGroup=?, teacher=?, groupRoom=?, specialSubj=?, counStud=? where idGroup=?";
         try {
             prst = conn.prepareStatement(updateGroup);
             conn.setAutoCommit(false);
@@ -134,7 +137,6 @@ public class GroupDaoImpl implements GroupDao {
 
     public void delete(int idGroup, Connection conn) {
         PreparedStatement prst = null;
-        String deleteGroup = "DELETE FROM groups where idGroup=?";
         try {
             prst = conn.prepareStatement(deleteGroup);
             prst.setInt(1, idGroup);
@@ -157,7 +159,6 @@ public class GroupDaoImpl implements GroupDao {
         Statement statement = null;
         try {
             statement = conn.createStatement();
-            String getWithStudents = "SELECT  groups.nameGroup, groups.teacher, students.firstName, students.lastName FROM groups inner join students ON students.idGroup = groups.idGroup where groups.idGroup = 3";
             ResultSet rs = statement.executeQuery(getWithStudents);
             if (rs.next()) {
                 group.setNameGroup(rs.getString("nameGroup"));
