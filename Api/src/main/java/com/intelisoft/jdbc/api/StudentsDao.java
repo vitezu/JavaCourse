@@ -1,4 +1,4 @@
-package com.intelisoft.jdbc.daointerfaces;
+package com.intelisoft.jdbc.api;
 
 import com.inteliSoft.jdbc.entity.StudentsEntity;
 
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Pavel on 11.07.2017.
  */
-public interface DaoStudentsInterface {
+public interface StudentsDao {
    void add(StudentsEntity students);
    List<StudentsEntity> getAll();
    StudentsEntity getById(int idStudents);

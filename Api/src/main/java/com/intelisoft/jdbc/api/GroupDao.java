@@ -1,4 +1,4 @@
-package com.intelisoft.jdbc.daointerfaces;
+package com.intelisoft.jdbc.api;
 
 import com.inteliSoft.jdbc.entity.GroupEntity;
 
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Pavel on 12.07.2017.
  */
-public interface DaoGroupInterface {
+public interface GroupDao {
 
         void add(GroupEntity group);
          List<GroupEntity> getAll();
