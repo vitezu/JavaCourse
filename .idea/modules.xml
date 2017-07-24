@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Api/Api.iml" filepath="$PROJECT_DIR$/Api/Api.iml" />
       <module fileurl="file://$PROJECT_DIR$/Connection/Connection.iml" filepath="$PROJECT_DIR$/Connection/Connection.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DaoImplements/DaoImplements.iml" filepath="$PROJECT_DIR$/DaoImplements/DaoImplements.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dao/Dao.iml" filepath="$PROJECT_DIR$/Dao/Dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/Entity/Entity.iml" filepath="$PROJECT_DIR$/Entity/Entity.iml" />
       <module fileurl="file://E:\JavaCurse\ImplDao\ImplDao.iml" filepath="E:\JavaCurse\ImplDao\ImplDao.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jdbc.iml" filepath="$PROJECT_DIR$/Jdbc.iml" />

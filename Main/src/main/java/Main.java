@@ -1,7 +1,7 @@
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
-import com.intelisoft.jdbc.daoimplements.GroupDaoImplement;
-import com.intelisoft.jdbc.daoimplements.StudentsDaoImplement;
+import com.intelisoft.jdbc.dao.impl.GroupDaoImpl;
+import com.intelisoft.jdbc.dao.impl.StudentsDaoImpl;
 import com.intelisoft.jdbc.services.GroupService;
 import com.intelisoft.jdbc.services.StudentsService;
 
@@ -14,10 +14,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        StudentsDaoImplement studentsDao = new StudentsDaoImplement();
+        StudentsDaoImpl studentsDao = new StudentsDaoImpl();
         StudentsService studentsService = new StudentsService();
 
-        GroupDaoImplement groupDao = new GroupDaoImplement();
+        GroupDaoImpl groupDao = new GroupDaoImpl();
         GroupService groupService = new GroupService();
 
         //Add

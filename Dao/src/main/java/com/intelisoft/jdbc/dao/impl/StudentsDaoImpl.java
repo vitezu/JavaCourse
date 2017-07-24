@@ -1,4 +1,4 @@
-package com.intelisoft.jdbc.daoimplements;
+package com.intelisoft.jdbc.dao.impl;
 
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by Pavel on 11.07.2017.
  */
-public class StudentsDaoImplement implements StudentsDao {
-    private final Logger logger = Logger.getLogger(StudentsDaoImplement.class);
+public class StudentsDaoImpl implements StudentsDao {
+    private final Logger logger = Logger.getLogger(StudentsDaoImpl.class);
     Connection conn = DBConnection.getDBConnection();
 
     public void add(StudentsEntity students) {

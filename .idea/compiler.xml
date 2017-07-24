@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Api" />
         <module name="Connection" />
-        <module name="DaoImplements" />
+        <module name="Dao" />
         <module name="Entity" />
         <module name="ImplDao" />
         <module name="Main" />

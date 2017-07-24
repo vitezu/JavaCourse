@@ -12,7 +12,7 @@
         <module>Entity</module>
         <module>Api</module>
         <module>Connection</module>
-        <module>DaoImplements</module>
+        <module>Dao</module>
         <module>Main</module>
         <module>Services</module>
     </modules>

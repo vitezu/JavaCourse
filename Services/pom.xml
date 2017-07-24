@@ -11,7 +11,7 @@
 
         <dependency>
             <groupId>com.InteliSoft.Jdbc</groupId>
-            <artifactId>DaoImplements</artifactId>
+            <artifactId>Dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -2,7 +2,7 @@ package com.intelisoft.jdbc.services;
 
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.intelisoft.jdbc.connection.DBConnection;
-import com.intelisoft.jdbc.daoimplements.GroupDaoImplement;
+import com.intelisoft.jdbc.dao.impl.GroupDaoImpl;
 import com.intelisoft.jdbc.api.GroupDao;
 
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by Pavel on 20.07.2017.
  */
 public class GroupService {
-    private GroupDao groupDao = new GroupDaoImplement();
+    private GroupDao groupDao = new GroupDaoImpl();
 
     public void delete(int idGroup) {
         Connection conn = null;
