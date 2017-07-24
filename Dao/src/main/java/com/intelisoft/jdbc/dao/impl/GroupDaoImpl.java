@@ -2,8 +2,8 @@ package com.intelisoft.jdbc.dao.impl;
 
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
-import com.intelisoft.jdbc.connection.DBConnection;
 import com.intelisoft.jdbc.api.GroupDao;
+import com.intelisoft.jdbc.connection.DBConnection;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -15,12 +15,31 @@ import java.util.List;
  */
 public class GroupDaoImpl implements GroupDao {
     private final Logger logger = Logger.getLogger(GroupDaoImpl.class);
-    private final String addGroup = "INSERT INTO groups (idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud) VALUES (?,?,?,?,?,?)";
+    private final String addGroup = "INSERT INTO groups (nameGroup, teacher, groupRoom, specialSubj, counStud, idGroup) VALUES (?,?,?,?,?,?)";
     private final String getAllGroups = "Select idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud from groups ";
     private final String getByIdGroup = "SELECT idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud FROM groups where idGroup=?";
     private final String updateGroup = "UPDATE groups SET  nameGroup=?, teacher=?, groupRoom=?, specialSubj=?, counStud=? where idGroup=?";
     private final String deleteGroup = "DELETE FROM groups where idGroup=?";
     private final String getWithStudents = "SELECT  groups.nameGroup, groups.teacher, students.firstName, students.lastName FROM groups inner join students ON students.idGroup = groups.idGroup where groups.idGroup = 3";
+    private GroupEntity convertRow(ResultSet rs) throws SQLException {
+        GroupEntity group = new GroupEntity();
+        group.setIdGroup(rs.getInt("idGroup"));
+        group.setNameGroup(rs.getString("nameGroup"));
+        group.setTeacher(rs.getString("teacher"));
+        group.setGroupRoom(rs.getInt("groupRoom"));
+        group.setSpecialSubj(rs.getString("specialSubj"));
+        group.setCounStud(rs.getInt("counStud"));
+    return group;
+    }
+    private void convertGroup(GroupEntity group, PreparedStatement prst) throws SQLException {
+        prst.setString(1, group.getNameGroup());
+        prst.setString(2, group.getTeacher());
+        prst.setInt(3, group.getGroupRoom());
+        prst.setString(4, group.getSpecialSubj());
+        prst.setInt(5, group.getCounStud());
+        prst.setInt(6, group.getIdGroup());
+        prst.executeUpdate();
+    };
 
     Connection conn = DBConnection.getDBConnection();
 
@@ -28,13 +47,7 @@ public class GroupDaoImpl implements GroupDao {
         PreparedStatement prst = null;
         try {
             prst = conn.prepareStatement(addGroup);
-            prst.setInt(1, group.getIdGroup());
-            prst.setString(2, group.getNameGroup());
-            prst.setString(3, group.getTeacher());
-            prst.setInt(4, group.getGroupRoom());
-            prst.setString(5, group.getSpecialSubj());
-            prst.setInt(6, group.getCounStud());
-            prst.executeUpdate();
+            convertGroup(group, prst);
         } catch (SQLException e) {
             logger.error("Error addGroup", e);
         } finally {
@@ -56,13 +69,7 @@ public class GroupDaoImpl implements GroupDao {
             st = conn.createStatement();
             rs = st.executeQuery(getAllGroups);
             while (rs.next()) {
-                GroupEntity group = new GroupEntity();
-                group.setIdGroup(rs.getInt("idGroup"));
-                group.setNameGroup(rs.getString("nameGroup"));
-                group.setTeacher(rs.getString("teacher"));
-                group.setGroupRoom(rs.getInt("groupRoom"));
-                group.setSpecialSubj(rs.getString("specialSubj"));
-                group.setCounStud(rs.getInt("counStud"));
+            GroupEntity group = convertRow(rs);
                 list.add(group);
             }
         } catch (SQLException e) {
@@ -80,19 +87,14 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     public GroupEntity getById(int idGroup) {
+        GroupEntity group = null;
         PreparedStatement prst = null;
-        GroupEntity group = new GroupEntity();
         try {
             prst = conn.prepareStatement(getByIdGroup);
             prst.setInt(1, idGroup);
             ResultSet rs = prst.executeQuery();
         while (rs.next()){
-            group.setIdGroup(rs.getInt("idGroup"));
-            group.setNameGroup(rs.getString("nameGroup"));
-            group.setTeacher(rs.getString("teacher"));
-            group.setGroupRoom(rs.getInt("groupRoom"));
-            group.setSpecialSubj(rs.getString("specialSubj"));
-            group.setCounStud(rs.getInt("counStud"));
+            group = convertRow(rs);
             System.out.println(group);
 }
         } catch (SQLException e) {
@@ -113,15 +115,7 @@ public class GroupDaoImpl implements GroupDao {
         PreparedStatement prst = null;
         try {
             prst = conn.prepareStatement(updateGroup);
-            conn.setAutoCommit(false);
-            prst.setString(1, group.getNameGroup());
-            prst.setString(2, group.getTeacher());
-            prst.setInt(3, group.getGroupRoom());
-            prst.setString(4, group.getSpecialSubj());
-            prst.setInt(5, group.getCounStud());
-            prst.setInt(6, group.getIdGroup());
-            prst.executeUpdate();
-            conn.commit();
+            convertGroup(group, prst);
         } catch (SQLException e) {
             logger.error("Error updateGroup", e);
         } finally {

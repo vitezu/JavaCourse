@@ -15,29 +15,42 @@ import java.util.List;
  */
 public class StudentsDaoImpl implements StudentsDao {
     private final Logger logger = Logger.getLogger(StudentsDaoImpl.class);
-    private final String addStudents = "INSERT INTO students (idStudents, firstName, lastName, age, birth, phone, idGroup) VALUES (?,?,?,?,?,?,?)";
+    private final String addStudents = "INSERT INTO students (firstName, lastName, age, birth, phone, idGroup, idStudents) VALUES (?,?,?,?,?,?,?)";
     private final String getAllStudents = "Select idStudents, firstName, lastName, age, birth, phone from students";
     private final String getByIdStudents = "SELECT * FROM students where idStudents=?";
     private final String updateStudents = "UPDATE students SET  firstName=?, lastName=?, age=?, birth=?, phone=?, idGroup=? where idStudents=?";
     private final String deleteStudents = "DELETE  FROM students where idStudents=?";
     private final String getWithGroup = "SELECT  students.firstName, students.lastName, groups.teacher  FROM students inner join groups ON students.idGroup = groups.idGroup where groups.idGroup = 3";
+    private void convertStudents(StudentsEntity students, PreparedStatement prst) throws SQLException {
+        GroupEntity group = new GroupEntity();
+        group.setIdGroup(3);
+        prst.setString(1, students.getFirstName());
+        prst.setString(2, students.getLastName());
+        prst.setInt(3, students.getAge());
+        prst.setString(4, students.getBirth());
+        prst.setInt(5, students.getPhone());
+        prst.setInt(6, group.getIdGroup());
+        prst.setInt(7, students.getIdStudents());
+        prst.executeUpdate();
+    };
+    private StudentsEntity convertRow(ResultSet rs) throws SQLException {
+        StudentsEntity students = new StudentsEntity();
+        students.setIdStudents(rs.getInt("idStudents"));
+        students.setFirstName(rs.getString("firstName"));
+        students.setLastName(rs.getString("lastName"));
+        students.setAge(rs.getInt("age"));
+        students.setBirth(rs.getString("birth"));
+        students.setPhone(rs.getInt("phone"));
+        return students;
+    }
 
     Connection conn = DBConnection.getDBConnection();
 
     public void add(StudentsEntity students) {
         PreparedStatement prst = null;
         try {
-            GroupEntity group = new GroupEntity();
-            group.setIdGroup(3);
             prst = conn.prepareStatement(addStudents);
-            prst.setInt(1, students.getIdStudents());
-            prst.setString(2, students.getFirstName());
-            prst.setString(3, students.getLastName());
-            prst.setInt(4, students.getAge());
-            prst.setString(5, students.getBirth());
-            prst.setInt(6, students.getPhone());
-            prst.setInt(7, group.getIdGroup());
-            prst.executeUpdate();
+            convertStudents(students, prst);
         } catch (SQLException e) {
             logger.error("Error addStudents", e);
         } finally {
@@ -59,13 +72,7 @@ public class StudentsDaoImpl implements StudentsDao {
             st = conn.createStatement();
             rs = st.executeQuery(getAllStudents);
             while (rs.next()) {
-                StudentsEntity students = new StudentsEntity();
-                students.setIdStudents(rs.getInt("idStudents"));
-                students.setFirstName(rs.getString("firstName"));
-                students.setLastName(rs.getString("lastName"));
-                students.setAge(rs.getInt("age"));
-                students.setBirth(rs.getString("birth"));
-                students.setPhone(rs.getInt("phone"));
+                StudentsEntity students = convertRow(rs);
                 studentsList.add(students);
             }
 
@@ -85,19 +92,13 @@ public class StudentsDaoImpl implements StudentsDao {
 
     public StudentsEntity getById(int idStudents) {
         PreparedStatement prst = null;
-        StudentsEntity students = new StudentsEntity();
-
+        StudentsEntity students = null;
         try {
             prst = conn.prepareStatement(getByIdStudents);
             prst.setInt(1, idStudents);
             ResultSet rs = prst.executeQuery();
             while (rs.next()) {
-                students.setIdStudents(rs.getInt("idStudents"));
-                students.setFirstName(rs.getString("firstName"));
-                students.setLastName(rs.getString("lastName"));
-                students.setAge(rs.getInt("age"));
-                students.setBirth(rs.getString("birth"));
-                students.setPhone(rs.getInt("phone"));
+                students = convertRow(rs);
                 System.out.println(students);
             }
         } catch (SQLException e) {
@@ -117,17 +118,8 @@ public class StudentsDaoImpl implements StudentsDao {
     public void update(StudentsEntity students, Connection conn) {
         PreparedStatement prst = null;
         try {
-            GroupEntity group = new GroupEntity();
-            group.setIdGroup(3);
             prst = conn.prepareStatement(updateStudents);
-            prst.setString(1, students.getFirstName());
-            prst.setString(2, students.getLastName());
-            prst.setInt(3, students.getAge());
-            prst.setString(4, students.getBirth());
-            prst.setInt(5, students.getPhone());
-            prst.setInt(6, group.getIdGroup());
-            prst.setInt(7, students.getIdStudents());
-            prst.executeUpdate();
+            convertStudents(students, prst);
         } catch (SQLException e) {
             logger.error("Error updateStudents", e);
         } finally {
@@ -139,7 +131,6 @@ public class StudentsDaoImpl implements StudentsDao {
                 }
             }
         }
-
     }
 
     public void delete(int idStudents, Connection conn) {
