@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.InteliSoft.Jdbc</groupId>
-    <artifactId>ImplDao</artifactId>
+    <artifactId>Services</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
 
