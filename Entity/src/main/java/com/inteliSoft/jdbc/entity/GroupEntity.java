@@ -7,20 +7,20 @@ import java.util.List;
  */
 public class GroupEntity {
 
-    private int idGroup;
+    private Integer idGroup;
     private String nameGroup;
     private String teacher;
-    private int groupRoom;
+    private Integer groupRoom;
     private String specialSubj;
-    private int counStud;
+    private Integer counStud;
     private List<StudentsEntity> students;
 
 
-    public int getIdGroup() {
+    public Integer getIdGroup() {
         return idGroup;
     }
 
-    public void setIdGroup(int idGroup) {
+    public void setIdGroup(Integer idGroup) {
         this.idGroup = idGroup;
     }
 
@@ -28,8 +28,8 @@ public class GroupEntity {
         return nameGroup;
     }
 
-    public void setNameGroup(String nameClass) {
-        this.nameGroup = nameClass;
+    public void setNameGroup(String nameGroup) {
+        this.nameGroup = nameGroup;
     }
 
     public String getTeacher() {
@@ -40,11 +40,11 @@ public class GroupEntity {
         this.teacher = teacher;
     }
 
-    public int getGroupRoom() {
+    public Integer getGroupRoom() {
         return groupRoom;
     }
 
-    public void setGroupRoom(int groupRoom) {
+    public void setGroupRoom(Integer groupRoom) {
         this.groupRoom = groupRoom;
     }
 
@@ -56,11 +56,11 @@ public class GroupEntity {
         this.specialSubj = specialSubj;
     }
 
-    public int getCounStud() {
+    public Integer getCounStud() {
         return counStud;
     }
 
-    public void setCounStud(int counStud) {
+    public void setCounStud(Integer counStud) {
         this.counStud = counStud;
     }
 

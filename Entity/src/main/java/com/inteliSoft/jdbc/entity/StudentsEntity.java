@@ -4,20 +4,19 @@ package com.inteliSoft.jdbc.entity;
  * Created by Pavel on 10.07.2017.
  */
 public class StudentsEntity {
-    private int idStudents;
+    private Integer idStudents;
     private String firstName;
     private String lastName;
-    private int age;
+    private Integer age;
     private String birth;
-    private int phone;
+    private Integer phone;
     private GroupEntity group;
 
-
-    public int getIdStudents() {
+    public Integer getIdStudents() {
         return idStudents;
     }
 
-    public void setIdStudents(int idStudents) {
+    public void setIdStudents(Integer idStudents) {
         this.idStudents = idStudents;
     }
 
@@ -37,11 +36,11 @@ public class StudentsEntity {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -53,11 +52,11 @@ public class StudentsEntity {
         this.birth = birth;
     }
 
-    public int getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
@@ -69,20 +68,6 @@ public class StudentsEntity {
         this.group = group;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StudentsEntity students = (StudentsEntity) o;
-
-        if (age != students.age) return false;
-        if (phone != students.phone) return false;
-        if (firstName != null ? !firstName.equals(students.firstName) : students.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(students.lastName) : students.lastName != null) return false;
-        if (birth != null ? !birth.equals(students.birth) : students.birth != null) return false;
-        return group != null ? group.equals(students.group) : students.group == null;
-    }
 
     @Override
     public String toString() {
