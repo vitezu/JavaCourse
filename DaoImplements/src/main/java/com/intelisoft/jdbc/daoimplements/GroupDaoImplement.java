@@ -3,7 +3,7 @@ package com.intelisoft.jdbc.daoimplements;
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
 import com.intelisoft.jdbc.connection.DBConnection;
-import com.intelisoft.jdbc.daointerfaces.DaoGroupInterface;
+import com.intelisoft.jdbc.api.GroupDao;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Pavel on 12.07.2017.
  */
-public class GroupDaoImplement implements DaoGroupInterface {
+public class GroupDaoImplement implements GroupDao {
     private final Logger logger = Logger.getLogger(GroupDaoImplement.class);
     Connection conn = DBConnection.getDBConnection();
 

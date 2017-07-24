@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>Entity</module>
-        <module>Dao</module>
+        <module>Api</module>
         <module>Connection</module>
         <module>DaoImplements</module>
         <module>Main</module>

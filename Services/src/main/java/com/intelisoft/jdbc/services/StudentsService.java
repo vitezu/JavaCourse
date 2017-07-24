@@ -3,7 +3,7 @@ package com.intelisoft.jdbc.services;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
 import com.intelisoft.jdbc.connection.DBConnection;
 import com.intelisoft.jdbc.daoimplements.StudentsDaoImplement;
-import com.intelisoft.jdbc.daointerfaces.DaoStudentsInterface;
+import com.intelisoft.jdbc.api.StudentsDao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by Pavel on 18.07.2017.
  */
 public class StudentsService {
-   private DaoStudentsInterface studentsDao = new StudentsDaoImplement();
+   private StudentsDao studentsDao = new StudentsDaoImplement();
 
    public void delete(int idStudents) {
         Connection conn = null;
