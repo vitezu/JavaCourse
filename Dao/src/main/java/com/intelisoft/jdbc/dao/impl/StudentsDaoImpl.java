@@ -99,7 +99,6 @@ public class StudentsDaoImpl implements StudentsDao {
             ResultSet rs = prst.executeQuery();
             while (rs.next()) {
                 students = convertRow(rs);
-                System.out.println(students);
             }
         } catch (SQLException e) {
             logger.error("Error getByIdStudents", e);
@@ -150,10 +149,10 @@ public class StudentsDaoImpl implements StudentsDao {
                 }
             }
         }
-
     }
 
-    public StudentsEntity getWithGroup() {
+    public List<StudentsEntity> getWithGroup() {
+        List<StudentsEntity> studentsList = new ArrayList<StudentsEntity>();
         StudentsEntity students = new StudentsEntity();
         GroupEntity group = new GroupEntity();
         Statement statement = null;
@@ -165,11 +164,11 @@ public class StudentsDaoImpl implements StudentsDao {
                 students.setLastName(rs.getString("lastName"));
                 group.setTeacher(rs.getString("teacher"));
                 students.setGroup(group);
-                System.out.println(students);
+                studentsList.add(students);
             }
         } catch (SQLException e) {
             logger.error("Error getWithGroup", e);}
-        return students;
+        return studentsList;
     }
 
 }

@@ -74,17 +74,21 @@ public class Runner {
        groupService.update(group2);
 
         //Inner Join
-          groupDao.getWithStudents();
+        System.out.println(groupDao.getWithStudents());
           System.out.println();
-          studentsDao.getWithGroup();
-          System.out.println();
+
+        List<StudentsEntity> studentList2 = studentsDao.getWithGroup();
+        for (StudentsEntity a: studentList2){
+            System.out.println(a);
+        }
 
         //Delete
         studentsService.delete(2);
         groupService.delete(2);
 
 //      Get byID
-        studentsDao.getById(3);
-        groupDao.getById(3);
+        System.out.println(studentsDao.getById(3));
+        System.out.println(groupDao.getById(3));
+
     }
 }

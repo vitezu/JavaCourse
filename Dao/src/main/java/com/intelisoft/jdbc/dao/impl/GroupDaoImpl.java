@@ -95,7 +95,7 @@ public class GroupDaoImpl implements GroupDao {
             ResultSet rs = prst.executeQuery();
         while (rs.next()){
             group = convertRow(rs);
-            System.out.println(group);
+//            System.out.println(group);
 }
         } catch (SQLException e) {
             logger.error("Error getByIdGroup", e);
@@ -165,7 +165,6 @@ public class GroupDaoImpl implements GroupDao {
                     students.add(students1);
                 } while (rs.next());
                 group.setStudents(students);
-                System.out.println(group);
             }
         } catch (SQLException e) {
             logger.error("Error getWithStudents", e);
