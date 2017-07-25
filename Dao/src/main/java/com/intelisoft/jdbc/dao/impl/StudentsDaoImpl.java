@@ -2,7 +2,6 @@ package com.intelisoft.jdbc.dao.impl;
 
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
-import com.intelisoft.jdbc.connection.DBConnection;
 import com.intelisoft.jdbc.api.StudentsDao;
 import org.apache.log4j.Logger;
 
@@ -44,9 +43,8 @@ public class StudentsDaoImpl implements StudentsDao {
         return students;
     }
 
-    Connection conn = DBConnection.getDBConnection();
 
-    public void add(StudentsEntity students) {
+    public void add(StudentsEntity students, Connection conn) {
         PreparedStatement prst = null;
         try {
             prst = conn.prepareStatement(addStudents);
@@ -64,7 +62,7 @@ public class StudentsDaoImpl implements StudentsDao {
         }
     }
 
-    public List<StudentsEntity> getAll() {
+    public List<StudentsEntity> getAll(Connection conn) {
         List<StudentsEntity> studentsList = new ArrayList<StudentsEntity>();
         Statement st = null;
         ResultSet rs = null;
@@ -90,7 +88,7 @@ public class StudentsDaoImpl implements StudentsDao {
         }
     }
 
-    public StudentsEntity getById(int idStudents) {
+    public StudentsEntity getById(int idStudents, Connection conn) {
         PreparedStatement prst = null;
         StudentsEntity students = null;
         try {
@@ -151,7 +149,7 @@ public class StudentsDaoImpl implements StudentsDao {
         }
     }
 
-    public List<StudentsEntity> getWithGroup() {
+    public List<StudentsEntity> getWithGroup(Connection conn) {
         List<StudentsEntity> studentsList = new ArrayList<StudentsEntity>();
         StudentsEntity students = new StudentsEntity();
         GroupEntity group = new GroupEntity();

@@ -3,7 +3,6 @@ package com.intelisoft.jdbc.dao.impl;
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
 import com.intelisoft.jdbc.api.GroupDao;
-import com.intelisoft.jdbc.connection.DBConnection;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -41,9 +40,8 @@ public class GroupDaoImpl implements GroupDao {
         prst.executeUpdate();
     };
 
-    Connection conn = DBConnection.getDBConnection();
 
-    public void add(GroupEntity group) {
+    public void add(GroupEntity group, Connection conn) {
         PreparedStatement prst = null;
         try {
             prst = conn.prepareStatement(addGroup);
@@ -61,7 +59,7 @@ public class GroupDaoImpl implements GroupDao {
         }
     }
 
-    public List<GroupEntity> getAll() {
+    public List<GroupEntity> getAll(Connection conn) {
         List<GroupEntity> list = new ArrayList<GroupEntity>();
         Statement st = null;
         ResultSet rs = null;
@@ -86,7 +84,7 @@ public class GroupDaoImpl implements GroupDao {
         }
     }
 
-    public GroupEntity getById(int idGroup) {
+    public GroupEntity getById(int idGroup, Connection conn) {
         GroupEntity group = null;
         PreparedStatement prst = null;
         try {
@@ -95,7 +93,6 @@ public class GroupDaoImpl implements GroupDao {
             ResultSet rs = prst.executeQuery();
         while (rs.next()){
             group = convertRow(rs);
-//            System.out.println(group);
 }
         } catch (SQLException e) {
             logger.error("Error getByIdGroup", e);
@@ -148,7 +145,7 @@ public class GroupDaoImpl implements GroupDao {
         }
     }
 
-    public GroupEntity getWithStudents() {
+    public GroupEntity getWithStudents(Connection conn) {
         GroupEntity group = new GroupEntity();
         Statement statement = null;
         try {
