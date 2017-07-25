@@ -3,6 +3,7 @@ package com.intelisoft.jdbc.api;
 import com.inteliSoft.jdbc.entity.GroupEntity;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -10,12 +11,12 @@ import java.util.List;
  */
 public interface GroupDao {
 
-         void add(GroupEntity group, Connection conn);
-         List<GroupEntity> getAll(Connection conn);
-         GroupEntity getById(int idClass, Connection conn);
-         void update(GroupEntity group, Connection conn);
-         void delete(int idGroup, Connection conn);
-         GroupEntity getWithStudents(Connection conn);
+         void add(GroupEntity group, Connection conn) throws SQLException;
+         List<GroupEntity> getAll(Connection conn) throws SQLException;
+         GroupEntity getById(int idClass, Connection conn) throws SQLException;
+         void update(GroupEntity group, Connection conn) throws SQLException;
+         void delete(int idGroup, Connection conn) throws SQLException;
+         GroupEntity getWithStudents(Connection conn) throws SQLException;
     }
 
 
