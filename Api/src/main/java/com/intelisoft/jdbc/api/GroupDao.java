@@ -10,12 +10,12 @@ import java.util.List;
  */
 public interface GroupDao {
 
-        void add(GroupEntity group);
-         List<GroupEntity> getAll();
-         GroupEntity getById(int idClass);
+         void add(GroupEntity group, Connection conn);
+         List<GroupEntity> getAll(Connection conn);
+         GroupEntity getById(int idClass, Connection conn);
          void update(GroupEntity group, Connection conn);
          void delete(int idGroup, Connection conn);
-         GroupEntity getWithStudents();
+         GroupEntity getWithStudents(Connection conn);
     }
 
 
