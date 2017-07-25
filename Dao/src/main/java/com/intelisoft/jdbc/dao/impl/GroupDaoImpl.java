@@ -40,115 +40,59 @@ public class GroupDaoImpl implements GroupDao {
         prst.executeUpdate();
     };
 
-
-    public void add(GroupEntity group, Connection conn) {
+    public void add(GroupEntity group, Connection conn) throws SQLException {
         PreparedStatement prst = null;
-        try {
             prst = conn.prepareStatement(addGroup);
             convertGroup(group, prst);
-        } catch (SQLException e) {
-            logger.error("Error addGroup", e);
-        } finally {
-            if (prst != null) {
-                try {
-                    prst.close();
-                } catch (SQLException e) {
-                    System.out.println("Error finally");
-                }
-            }
+            prst.close();
         }
-    }
 
-    public List<GroupEntity> getAll(Connection conn) {
+    public List<GroupEntity> getAll(Connection conn) throws SQLException {
         List<GroupEntity> list = new ArrayList<GroupEntity>();
         Statement st = null;
         ResultSet rs = null;
-        try {
             st = conn.createStatement();
             rs = st.executeQuery(getAllGroups);
             while (rs.next()) {
             GroupEntity group = convertRow(rs);
                 list.add(group);
             }
-        } catch (SQLException e) {
-            logger.error("Error getAllGroups", e);
-        } finally {
-            if (st != null) {
-                try {
                     st.close();
-                } catch (SQLException e) {
-                    System.out.println("Error finally");
-                }
-            }
             return list;
         }
-    }
 
-    public GroupEntity getById(int idGroup, Connection conn) {
+
+    public GroupEntity getById(int idGroup, Connection conn) throws SQLException {
         GroupEntity group = null;
         PreparedStatement prst = null;
-        try {
             prst = conn.prepareStatement(getByIdGroup);
             prst.setInt(1, idGroup);
             ResultSet rs = prst.executeQuery();
         while (rs.next()){
             group = convertRow(rs);
 }
-        } catch (SQLException e) {
-            logger.error("Error getByIdGroup", e);
-        } finally {
-            if (prst != null) {
-                try {
-                    prst.close();
-                } catch (SQLException e) {
-                    System.out.println("Error finally");
-                }
-            }
-        }
+            prst.close();
         return group;
     }
 
-    public void update(GroupEntity group, Connection conn) {
+    public void update(GroupEntity group, Connection conn) throws SQLException {
         PreparedStatement prst = null;
-        try {
             prst = conn.prepareStatement(updateGroup);
             convertGroup(group, prst);
-        } catch (SQLException e) {
-            logger.error("Error updateGroup", e);
-        } finally {
-            if (prst != null) {
-                try {
                     prst.close();
-                } catch (SQLException e) {
-                    System.out.println("Error finally");
-                }
-            }
         }
-    }
 
-    public void delete(int idGroup, Connection conn) {
+    public void delete(int idGroup, Connection conn) throws SQLException {
         PreparedStatement prst = null;
-        try {
             prst = conn.prepareStatement(deleteGroup);
             prst.setInt(1, idGroup);
             prst.executeUpdate();
-        } catch (SQLException e) {
-            logger.error("Error deleteGroup", e);
-        } finally {
-            if (prst != null) {
-                try {
                     prst.close();
-                } catch (SQLException e) {
-                    System.out.println("Error finally");
-                }
-            }
         }
-    }
 
-    public GroupEntity getWithStudents(Connection conn) {
+    public GroupEntity getWithStudents(Connection conn) throws SQLException {
         GroupEntity group = new GroupEntity();
         Statement statement = null;
-        try {
             statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(getWithStudents);
             if (rs.next()) {
@@ -163,9 +107,6 @@ public class GroupDaoImpl implements GroupDao {
                 } while (rs.next());
                 group.setStudents(students);
             }
-        } catch (SQLException e) {
-            logger.error("Error getWithStudents", e);
-        }
         return group;
     }
 }
