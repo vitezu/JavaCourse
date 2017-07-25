@@ -14,6 +14,6 @@ public interface StudentsDao {
    StudentsEntity getById(int idStudents);
    void update(StudentsEntity students, Connection conn);
    void delete(int idStudents, Connection conn);
-   StudentsEntity getWithGroup();
+   List<StudentsEntity> getWithGroup();
 
 }
