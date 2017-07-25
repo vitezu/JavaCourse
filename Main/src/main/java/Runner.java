@@ -1,11 +1,7 @@
 import com.inteliSoft.jdbc.entity.GroupEntity;
 import com.inteliSoft.jdbc.entity.StudentsEntity;
-import com.intelisoft.jdbc.dao.impl.GroupDaoImpl;
-import com.intelisoft.jdbc.dao.impl.StudentsDaoImpl;
 import com.intelisoft.jdbc.services.GroupService;
 import com.intelisoft.jdbc.services.StudentsService;
-
-import java.util.List;
 
 /**
  * Created by Pavel on 09.07.2017.
@@ -14,10 +10,8 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        StudentsDaoImpl studentsDao = new StudentsDaoImpl();
         StudentsService studentsService = new StudentsService();
 
-        GroupDaoImpl groupDao = new GroupDaoImpl();
         GroupService groupService = new GroupService();
 
         //Add
@@ -37,20 +31,13 @@ public class Runner {
         students.setBirth("2007.04.10");
         students.setPhone(2958457);
 
-//        studentsDao.add(students);
-//        groupDao.add(group);
+//        studentsService.add(students);
+//        groupService.add(group);
 
         //Get All
-        List<StudentsEntity> studentList = studentsDao.getAll();
-        for (StudentsEntity a: studentList){
-            System.out.println(a);
-        }
+        studentsService.getAll();
         System.out.println();
-
-        List<GroupEntity> list = groupDao.getAll();
-        for (GroupEntity a: list){
-            System.out.println(a);
-        }
+        groupService.getAll();
         System.out.println();
 
         //Update
@@ -74,21 +61,18 @@ public class Runner {
        groupService.update(group2);
 
         //Inner Join
-        System.out.println(groupDao.getWithStudents());
+        groupService.getWithStudents();
           System.out.println();
 
-        List<StudentsEntity> studentList2 = studentsDao.getWithGroup();
-        for (StudentsEntity a: studentList2){
-            System.out.println(a);
-        }
+        studentsService.getWithGroup();
+        System.out.println();
 
         //Delete
         studentsService.delete(2);
         groupService.delete(2);
 
 //      Get byID
-        System.out.println(studentsDao.getById(3));
-        System.out.println(groupDao.getById(3));
-
+        studentsService.getById(3);
+        groupService.getById(3);
     }
 }
