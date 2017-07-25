@@ -4,6 +4,7 @@ import com.inteliSoft.jdbc.entity.StudentsEntity;
 import com.intelisoft.jdbc.api.StudentsDao;
 import com.intelisoft.jdbc.connection.DBConnection;
 import com.intelisoft.jdbc.dao.impl.StudentsDaoImpl;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,22 +14,36 @@ import java.util.List;
  * Created by Pavel on 18.07.2017.
  */
 public class StudentsService {
+    private final Logger logger = Logger.getLogger(StudentsService.class);
    private StudentsDao studentsDao = new StudentsDaoImpl();
     Connection conn = DBConnection.getDBConnection();
 
     public void add(StudentsEntity students) {
-        studentsDao.add(students, conn);
+        try {
+            studentsDao.add(students, conn);
+        } catch (SQLException e) {
+            logger.error("Error addStudents", e);
+        }
     }
 
     public void getAll (){
-        List<StudentsEntity> list = studentsDao.getAll(conn);
+        List<StudentsEntity> list = null;
+        try {
+            list = studentsDao.getAll(conn);
+        } catch (SQLException e) {
+            logger.error("Error getAllStudents", e);
+        }
         for (StudentsEntity a: list){
             System.out.println(a);
         }
     }
 
     public void getById (int idStudents){
-        System.out.println(studentsDao.getById(idStudents,conn));
+        try {
+            System.out.println(studentsDao.getById(idStudents,conn));
+        } catch (SQLException e) {
+            logger.error("Error getByIdStudents", e);
+        }
     }
 
     public void delete(int idStudents) {
@@ -39,11 +54,12 @@ public class StudentsService {
             studentsDao.delete(idStudents, conn);
             conn.commit();
         } catch (Exception e) {
+            logger.error("Error deleteStudents", e);
             if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException e1) {
-                    System.out.println("Error studentsServiceDelete");
+                    System.out.println("Error transaction");
                 }
             }
         }
@@ -57,18 +73,24 @@ public class StudentsService {
             studentsDao.update(students, conn);
             conn.commit();
         } catch (Exception e) {
+            logger.error("Error updateStudents", e);
             if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException e1) {
-                    System.out.println("Error studentsServiceUpdate");
+                    System.out.println("Error transaction");
                 }
             }
         }
     }
 
     public void getWithGroup(){
-        List<StudentsEntity> studentList2 = studentsDao.getWithGroup(conn);
+        List<StudentsEntity> studentList2 = null;
+        try {
+            studentList2 = studentsDao.getWithGroup(conn);
+        } catch (SQLException e) {
+            logger.error("Error getWithGroup", e);
+        }
         for (StudentsEntity a: studentList2){
             System.out.println(a);
         }
