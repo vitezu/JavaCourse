@@ -6,10 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/Connection/Connection.iml" filepath="$PROJECT_DIR$/Connection/Connection.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dao/Dao.iml" filepath="$PROJECT_DIR$/Dao/Dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/Entity/Entity.iml" filepath="$PROJECT_DIR$/Entity/Entity.iml" />
-      <module fileurl="file://E:\JavaCurse\ImplDao\ImplDao.iml" filepath="E:\JavaCurse\ImplDao\ImplDao.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jdbc.iml" filepath="$PROJECT_DIR$/Jdbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/Main/Main.iml" filepath="$PROJECT_DIR$/Main/Main.iml" />
-      <module fileurl="file://E:\JavaCurse\Service\Service.iml" filepath="E:\JavaCurse\Service\Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Services/Services.iml" filepath="$PROJECT_DIR$/Services/Services.iml" />
     </modules>
   </component>

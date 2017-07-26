@@ -1,5 +1,5 @@
-import com.inteliSoft.jdbc.entity.GroupEntity;
-import com.inteliSoft.jdbc.entity.StudentsEntity;
+import com.inteliSoft.jdbc.entity.Group;
+import com.inteliSoft.jdbc.entity.Students;
 import com.intelisoft.jdbc.services.GroupService;
 import com.intelisoft.jdbc.services.StudentsService;
 
@@ -15,7 +15,7 @@ public class Runner {
         GroupService groupService = new GroupService();
 
         //Add
-        GroupEntity group = new GroupEntity();
+        Group group = new Group();
         group.setIdGroup(6);
         group.setNameGroup("3V");
         group.setTeacher("Potapova");
@@ -23,7 +23,7 @@ public class Runner {
         group.setSpecialSubj("Fisics");
         group.setCounStud(29);
         
-        StudentsEntity students = new StudentsEntity();
+        Students students = new Students();
         students.setIdStudents(6);
         students.setFirstName("Alesya");
         students.setLastName("Ivanova");
@@ -41,7 +41,7 @@ public class Runner {
         System.out.println();
 
         //Update
-        StudentsEntity students2 = new StudentsEntity();
+        Students students2 = new Students();
         students2.setIdStudents(1);
         students2.setFirstName("Veronika");
         students2.setLastName("Ivanova");
@@ -49,7 +49,7 @@ public class Runner {
         students2.setBirth("2007.04.10");
         students2.setPhone(29586666);
 
-        GroupEntity group2 = new GroupEntity();
+        Group group2 = new Group();
         group2.setIdGroup(1);
         group2.setNameGroup("3D");
         group2.setTeacher("Potapkina");

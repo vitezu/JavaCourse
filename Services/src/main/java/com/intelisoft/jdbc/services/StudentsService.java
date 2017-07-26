@@ -1,6 +1,6 @@
 package com.intelisoft.jdbc.services;
 
-import com.inteliSoft.jdbc.entity.StudentsEntity;
+import com.inteliSoft.jdbc.entity.Students;
 import com.intelisoft.jdbc.api.StudentsDao;
 import com.intelisoft.jdbc.connection.DBConnection;
 import com.intelisoft.jdbc.dao.impl.StudentsDaoImpl;
@@ -18,7 +18,7 @@ public class StudentsService {
    private StudentsDao studentsDao = new StudentsDaoImpl();
     Connection conn = DBConnection.getDBConnection();
 
-    public void add(StudentsEntity students) {
+    public void add(Students students) {
         try {
             studentsDao.add(students, conn);
         } catch (SQLException e) {
@@ -27,13 +27,13 @@ public class StudentsService {
     }
 
     public void getAll (){
-        List<StudentsEntity> list = null;
+        List<Students> list = null;
         try {
             list = studentsDao.getAll(conn);
         } catch (SQLException e) {
             logger.error("Error getAllStudents", e);
         }
-        for (StudentsEntity a: list){
+        for (Students a: list){
             System.out.println(a);
         }
     }
@@ -65,7 +65,7 @@ public class StudentsService {
         }
     }
 
-    public  void update(StudentsEntity students) {
+    public  void update(Students students) {
         Connection conn = null;
         try {
             conn = DBConnection.getDBConnection();
@@ -85,13 +85,13 @@ public class StudentsService {
     }
 
     public void getWithGroup(){
-        List<StudentsEntity> studentList2 = null;
+        List<Students> studentList2 = null;
         try {
             studentList2 = studentsDao.getWithGroup(conn);
         } catch (SQLException e) {
             logger.error("Error getWithGroup", e);
         }
-        for (StudentsEntity a: studentList2){
+        for (Students a: studentList2){
             System.out.println(a);
         }
     }

@@ -1,6 +1,6 @@
 package com.intelisoft.jdbc.api;
 
-import com.inteliSoft.jdbc.entity.GroupEntity;
+import com.inteliSoft.jdbc.entity.Group;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,12 +11,12 @@ import java.util.List;
  */
 public interface GroupDao {
 
-         void add(GroupEntity group, Connection conn) throws SQLException;
-         List<GroupEntity> getAll(Connection conn) throws SQLException;
-         GroupEntity getById(int idClass, Connection conn) throws SQLException;
-         void update(GroupEntity group, Connection conn) throws SQLException;
+         void add(Group group, Connection conn) throws SQLException;
+         List<Group> getAll(Connection conn) throws SQLException;
+         Group getById(int idClass, Connection conn) throws SQLException;
+         void update(Group group, Connection conn) throws SQLException;
          void delete(int idGroup, Connection conn) throws SQLException;
-         GroupEntity getWithStudents(Connection conn) throws SQLException;
+         Group getWithStudents(Connection conn) throws SQLException;
     }
 
 

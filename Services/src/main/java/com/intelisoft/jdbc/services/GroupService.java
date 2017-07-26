@@ -1,6 +1,6 @@
 package com.intelisoft.jdbc.services;
 
-import com.inteliSoft.jdbc.entity.GroupEntity;
+import com.inteliSoft.jdbc.entity.Group;
 import com.intelisoft.jdbc.api.GroupDao;
 import com.intelisoft.jdbc.connection.DBConnection;
 import com.intelisoft.jdbc.dao.impl.GroupDaoImpl;
@@ -18,7 +18,7 @@ public class GroupService {
     private GroupDao groupDao = new GroupDaoImpl();
     Connection conn = DBConnection.getDBConnection();
 
-    public void add(GroupEntity group) {
+    public void add(Group group) {
         try {
             groupDao.add(group, conn);
         } catch (SQLException e) {
@@ -27,13 +27,13 @@ public class GroupService {
     }
 
     public void getAll (){
-        List<GroupEntity> list = null;
+        List<Group> list = null;
         try {
             list = groupDao.getAll(conn);
         } catch (SQLException e) {
             logger.error("Error getAllGroups", e);
         }
-        for (GroupEntity a: list){
+        for (Group a: list){
             System.out.println(a);
         }
     }
@@ -64,7 +64,7 @@ public class GroupService {
         }
     }
 
-    public  void update(GroupEntity group) {
+    public  void update(Group group) {
         try {
             conn.setAutoCommit(false);
             groupDao.update(group, conn);

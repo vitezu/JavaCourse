@@ -1,7 +1,7 @@
 package com.intelisoft.jdbc.dao.impl;
 
-import com.inteliSoft.jdbc.entity.GroupEntity;
-import com.inteliSoft.jdbc.entity.StudentsEntity;
+import com.inteliSoft.jdbc.entity.Group;
+import com.inteliSoft.jdbc.entity.Students;
 import com.intelisoft.jdbc.api.GroupDao;
 import org.apache.log4j.Logger;
 
@@ -20,8 +20,8 @@ public class GroupDaoImpl implements GroupDao {
     private final String updateGroup = "UPDATE groups SET  nameGroup=?, teacher=?, groupRoom=?, specialSubj=?, counStud=? where idGroup=?";
     private final String deleteGroup = "DELETE FROM groups where idGroup=?";
     private final String getWithStudents = "SELECT  groups.nameGroup, groups.teacher, students.firstName, students.lastName FROM groups inner join students ON students.idGroup = groups.idGroup where groups.idGroup = 3";
-    private GroupEntity convertRow(ResultSet rs) throws SQLException {
-        GroupEntity group = new GroupEntity();
+    private Group convertRow(ResultSet rs) throws SQLException {
+        Group group = new Group();
         group.setIdGroup(rs.getInt("idGroup"));
         group.setNameGroup(rs.getString("nameGroup"));
         group.setTeacher(rs.getString("teacher"));
@@ -30,7 +30,7 @@ public class GroupDaoImpl implements GroupDao {
         group.setCounStud(rs.getInt("counStud"));
     return group;
     }
-    private void convertGroup(GroupEntity group, PreparedStatement prst) throws SQLException {
+    private void convertGroup(Group group, PreparedStatement prst) throws SQLException {
         prst.setString(1, group.getNameGroup());
         prst.setString(2, group.getTeacher());
         prst.setInt(3, group.getGroupRoom());
@@ -40,21 +40,21 @@ public class GroupDaoImpl implements GroupDao {
         prst.executeUpdate();
     };
 
-    public void add(GroupEntity group, Connection conn) throws SQLException {
+    public void add(Group group, Connection conn) throws SQLException {
         PreparedStatement prst = null;
             prst = conn.prepareStatement(addGroup);
             convertGroup(group, prst);
             prst.close();
         }
 
-    public List<GroupEntity> getAll(Connection conn) throws SQLException {
-        List<GroupEntity> list = new ArrayList<GroupEntity>();
+    public List<Group> getAll(Connection conn) throws SQLException {
+        List<Group> list = new ArrayList<Group>();
         Statement st = null;
         ResultSet rs = null;
             st = conn.createStatement();
             rs = st.executeQuery(getAllGroups);
             while (rs.next()) {
-            GroupEntity group = convertRow(rs);
+            Group group = convertRow(rs);
                 list.add(group);
             }
                     st.close();
@@ -62,8 +62,8 @@ public class GroupDaoImpl implements GroupDao {
         }
 
 
-    public GroupEntity getById(int idGroup, Connection conn) throws SQLException {
-        GroupEntity group = null;
+    public Group getById(int idGroup, Connection conn) throws SQLException {
+        Group group = null;
         PreparedStatement prst = null;
             prst = conn.prepareStatement(getByIdGroup);
             prst.setInt(1, idGroup);
@@ -75,7 +75,7 @@ public class GroupDaoImpl implements GroupDao {
         return group;
     }
 
-    public void update(GroupEntity group, Connection conn) throws SQLException {
+    public void update(Group group, Connection conn) throws SQLException {
         PreparedStatement prst = null;
             prst = conn.prepareStatement(updateGroup);
             convertGroup(group, prst);
@@ -90,17 +90,17 @@ public class GroupDaoImpl implements GroupDao {
                     prst.close();
         }
 
-    public GroupEntity getWithStudents(Connection conn) throws SQLException {
-        GroupEntity group = new GroupEntity();
+    public Group getWithStudents(Connection conn) throws SQLException {
+        Group group = new Group();
         Statement statement = null;
             statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(getWithStudents);
             if (rs.next()) {
                 group.setNameGroup(rs.getString("nameGroup"));
                 group.setTeacher(rs.getString("teacher"));
-                List<StudentsEntity> students = new ArrayList<StudentsEntity>();
+                List<Students> students = new ArrayList<Students>();
                 do {
-                    StudentsEntity students1 = new StudentsEntity();
+                    Students students1 = new Students();
                     students1.setFirstName(rs.getString("firstName"));
                     students1.setLastName(rs.getString("lastName"));
                     students.add(students1);
