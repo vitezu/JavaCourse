@@ -23,7 +23,7 @@ public class Runner {
         group.setSpecialSubj("Fisics");
         
         Students students = new Students();
-        students.setIdStudents(6);
+        students.setIdStudent(6);
         students.setFirstName("Alesya");
         students.setLastName("Ivanova");
         students.setAge(11);
@@ -41,7 +41,7 @@ public class Runner {
 
         //Update
         Students students2 = new Students();
-        students2.setIdStudents(1);
+        students2.setIdStudent(1);
         students2.setFirstName("Veronika");
         students2.setLastName("Ivanova");
         students2.setAge(11);

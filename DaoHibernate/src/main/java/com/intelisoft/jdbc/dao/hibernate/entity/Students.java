@@ -1,17 +1,34 @@
-package com.inteliSoft.jdbc.entity;
+package com.intelisoft.jdbc.dao.hibernate.entity;
+
+import javax.persistence.*;
 
 /**
- * Created by Pavel on 10.07.2017.
+ * Created by Pavel on 26.07.2017.
  */
+@Entity
+@Table(name = "students")
 public class Students {
+    @Id
+    @Column(name= "id_student")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idStudent;
+    @Column(name= "first_name")
     private String firstName;
+    @Column(name= "last_name")
     private String lastName;
+    @Column(name= "age")
     private Integer age;
+    @Column(name= "birth")
     private String birth;
+    @Column(name= "phone")
     private Integer phone;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_group")
     private Group group;
 
+    Students (){
+
+    }
     public Integer getIdStudent() {
         return idStudent;
     }
@@ -68,10 +85,9 @@ public class Students {
         this.group = group;
     }
 
-
     @Override
     public String toString() {
-        return "com.inteliSoft.jdbc.entity.Students{" +
+        return "Students{" +
                 "idStudent=" + idStudent +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -3,12 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Api/Api.iml" filepath="$PROJECT_DIR$/Api/Api.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Api\Api.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Api\Api.iml" />
       <module fileurl="file://$PROJECT_DIR$/Connection/Connection.iml" filepath="$PROJECT_DIR$/Connection/Connection.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Connection\Connection.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Connection\Connection.iml" />
       <module fileurl="file://$PROJECT_DIR$/Dao/Dao.iml" filepath="$PROJECT_DIR$/Dao/Dao.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Dao\Dao.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Dao\Dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DaoHibernate/DaoHibernate.iml" filepath="$PROJECT_DIR$/DaoHibernate/DaoHibernate.iml" />
       <module fileurl="file://$PROJECT_DIR$/Entity/Entity.iml" filepath="$PROJECT_DIR$/Entity/Entity.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Entity\Entity.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Entity\Entity.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jdbc.iml" filepath="$PROJECT_DIR$/Jdbc.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Jdbc.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Jdbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/Main/Main.iml" filepath="$PROJECT_DIR$/Main/Main.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Main\Main.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Main\Main.iml" />
       <module fileurl="file://$PROJECT_DIR$/Services/Services.iml" filepath="$PROJECT_DIR$/Services/Services.iml" />
+      <module fileurl="file://E:\Java homework\test\mas2\JavaCurse-master\Services\Services.iml" filepath="E:\Java homework\test\mas2\JavaCurse-master\Services\Services.iml" />
     </modules>
   </component>
 </project>

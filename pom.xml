@@ -15,6 +15,7 @@
         <module>Dao</module>
         <module>Main</module>
         <module>Services</module>
+        <module>DaoHibernate</module>
     </modules>
 
     <dependencies>
@@ -25,7 +26,11 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.1.Final</version>
+        </dependency>
 
     </dependencies>
 </project>

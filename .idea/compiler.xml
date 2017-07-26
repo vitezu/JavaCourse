@@ -9,6 +9,7 @@
         <module name="Api" />
         <module name="Connection" />
         <module name="Dao" />
+        <module name="DaoHibernate" />
         <module name="Entity" />
         <module name="ImplDao" />
         <module name="Main" />
@@ -20,6 +21,7 @@
       <module name="Api" target="1.5" />
       <module name="Connection" target="1.5" />
       <module name="Dao" target="1.5" />
+      <module name="DaoHibernate" target="1.5" />
       <module name="DaoImplements" target="1.5" />
       <module name="Entity" target="1.5" />
       <module name="ImplDao" target="1.5" />

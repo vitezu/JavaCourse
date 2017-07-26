@@ -12,11 +12,11 @@ import java.util.List;
  * Created by Pavel on 11.07.2017.
  */
 public class StudentsDaoImpl implements StudentsDao {
-    private final String addStudents = "INSERT INTO students (firstName, lastName, age, birth, phone, idGroup, idStudents) VALUES (?,?,?,?,?,?,?)";
-    private final String getAllStudents = "Select idStudents, firstName, lastName, age, birth, phone from students";
-    private final String getByIdStudents = "SELECT * FROM students where idStudents=?";
-    private final String updateStudents = "UPDATE students SET  firstName=?, lastName=?, age=?, birth=?, phone=?, idGroup=? where idStudents=?";
-    private final String deleteStudents = "DELETE  FROM students where idStudents=?";
+    private final String addStudents = "INSERT INTO students (firstName, lastName, age, birth, phone, idGroup, idStudent) VALUES (?,?,?,?,?,?,?)";
+    private final String getAllStudents = "Select idStudent, firstName, lastName, age, birth, phone from students";
+    private final String getByIdStudents = "SELECT * FROM students where idStudent=?";
+    private final String updateStudents = "UPDATE students SET  firstName=?, lastName=?, age=?, birth=?, phone=?, idGroup=? where idStudent=?";
+    private final String deleteStudents = "DELETE  FROM students where idStudent=?";
     private final String getWithGroup = "SELECT  students.firstName, students.lastName, groups.teacher  FROM students inner join groups ON students.idGroup = groups.idGroup where students.idGroup = 3";
     private void convertStudents(Students students, PreparedStatement prst) throws SQLException {
         Group group = new Group();
@@ -27,12 +27,12 @@ public class StudentsDaoImpl implements StudentsDao {
         prst.setString(4, students.getBirth());
         prst.setInt(5, students.getPhone());
         prst.setInt(6, group.getIdGroup());
-        prst.setInt(7, students.getIdStudents());
+        prst.setInt(7, students.getIdStudent());
         prst.executeUpdate();
     };
     private Students convertRow(ResultSet rs) throws SQLException {
         Students students = new Students();
-        students.setIdStudents(rs.getInt("idStudents"));
+        students.setIdStudent(rs.getInt("idStudent"));
         students.setFirstName(rs.getString("firstName"));
         students.setLastName(rs.getString("lastName"));
         students.setAge(rs.getInt("age"));
