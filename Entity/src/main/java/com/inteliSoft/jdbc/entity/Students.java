@@ -3,7 +3,7 @@ package com.inteliSoft.jdbc.entity;
 /**
  * Created by Pavel on 10.07.2017.
  */
-public class StudentsEntity {
+public class Students {
     private Integer idStudents;
     private String firstName;
     private String lastName;

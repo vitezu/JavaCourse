@@ -5,15 +5,14 @@ import java.util.List;
 /**
  * Created by Pavel on 10.07.2017.
  */
-public class GroupEntity {
+public class Group {
 
     private Integer idGroup;
     private String nameGroup;
     private String teacher;
     private Integer groupRoom;
     private String specialSubj;
-    private Integer counStud;
-    private List<StudentsEntity> students;
+    private List<Students> students;
 
 
     public Integer getIdGroup() {
@@ -56,19 +55,11 @@ public class GroupEntity {
         this.specialSubj = specialSubj;
     }
 
-    public Integer getCounStud() {
-        return counStud;
-    }
-
-    public void setCounStud(Integer counStud) {
-        this.counStud = counStud;
-    }
-
-    public List<StudentsEntity> getStudents() {
+    public List<Students> getStudents() {
         return students;
     }
 
-    public void setStudents(List<StudentsEntity> students) {
+    public void setStudents(List<Students> students) {
         this.students = students;
     }
 
@@ -80,7 +71,6 @@ public class GroupEntity {
                 ", teacher='" + teacher + '\'' +
                 ", groupRoom=" + groupRoom +
                 ", specialSubj='" + specialSubj + '\'' +
-                ", counStud=" + counStud +
                 ", students=" + students +
                 '}';
     }
