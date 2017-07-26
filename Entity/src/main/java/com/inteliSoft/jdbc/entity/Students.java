@@ -10,7 +10,7 @@ public class StudentsEntity {
     private Integer age;
     private String birth;
     private Integer phone;
-    private GroupEntity group;
+    private Group group;
 
     public Integer getIdStudents() {
         return idStudents;
@@ -60,11 +60,11 @@ public class StudentsEntity {
         this.phone = phone;
     }
 
-    public GroupEntity getGroup() {
+    public Group getGroup() {
         return group;
     }
 
-    public void setGroup(GroupEntity group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 
