@@ -1,7 +1,7 @@
 package com.intelisoft.jdbc.dao.impl;
 
-import com.inteliSoft.jdbc.entity.GroupEntity;
-import com.inteliSoft.jdbc.entity.StudentsEntity;
+import com.inteliSoft.jdbc.entity.Group;
+import com.inteliSoft.jdbc.entity.Students;
 import com.intelisoft.jdbc.api.StudentsDao;
 
 import java.sql.*;
@@ -17,9 +17,9 @@ public class StudentsDaoImpl implements StudentsDao {
     private final String getByIdStudents = "SELECT * FROM students where idStudents=?";
     private final String updateStudents = "UPDATE students SET  firstName=?, lastName=?, age=?, birth=?, phone=?, idGroup=? where idStudents=?";
     private final String deleteStudents = "DELETE  FROM students where idStudents=?";
-    private final String getWithGroup = "SELECT  students.firstName, students.lastName, groups.teacher  FROM students inner join groups ON students.idGroup = groups.idGroup where groups.idGroup = 3";
-    private void convertStudents(StudentsEntity students, PreparedStatement prst) throws SQLException {
-        GroupEntity group = new GroupEntity();
+    private final String getWithGroup = "SELECT  students.firstName, students.lastName, groups.teacher  FROM students inner join groups ON students.idGroup = groups.idGroup where students.idGroup = 3";
+    private void convertStudents(Students students, PreparedStatement prst) throws SQLException {
+        Group group = new Group();
         group.setIdGroup(3);
         prst.setString(1, students.getFirstName());
         prst.setString(2, students.getLastName());
@@ -30,8 +30,8 @@ public class StudentsDaoImpl implements StudentsDao {
         prst.setInt(7, students.getIdStudents());
         prst.executeUpdate();
     };
-    private StudentsEntity convertRow(ResultSet rs) throws SQLException {
-        StudentsEntity students = new StudentsEntity();
+    private Students convertRow(ResultSet rs) throws SQLException {
+        Students students = new Students();
         students.setIdStudents(rs.getInt("idStudents"));
         students.setFirstName(rs.getString("firstName"));
         students.setLastName(rs.getString("lastName"));
@@ -42,30 +42,30 @@ public class StudentsDaoImpl implements StudentsDao {
     }
 
 
-    public void add(StudentsEntity students, Connection conn) throws SQLException {
+    public void add(Students students, Connection conn) throws SQLException {
         PreparedStatement prst = null;
             prst = conn.prepareStatement(addStudents);
             convertStudents(students, prst);
                     prst.close();
     }
 
-    public List<StudentsEntity> getAll(Connection conn) throws SQLException {
-        List<StudentsEntity> studentsList = new ArrayList<StudentsEntity>();
+    public List<Students> getAll(Connection conn) throws SQLException {
+        List<Students> studentsList = new ArrayList<Students>();
         Statement st = null;
         ResultSet rs = null;
             st = conn.createStatement();
             rs = st.executeQuery(getAllStudents);
             while (rs.next()) {
-                StudentsEntity students = convertRow(rs);
+                Students students = convertRow(rs);
                 studentsList.add(students);
             }
                 st.close();
             return studentsList;
     }
 
-    public StudentsEntity getById(int idStudents, Connection conn) throws SQLException {
+    public Students getById(int idStudents, Connection conn) throws SQLException {
         PreparedStatement prst = null;
-        StudentsEntity students = null;
+        Students students = null;
             prst = conn.prepareStatement(getByIdStudents);
             prst.setInt(1, idStudents);
             ResultSet rs = prst.executeQuery();
@@ -76,7 +76,7 @@ public class StudentsDaoImpl implements StudentsDao {
         return students;
     }
 
-    public void update(StudentsEntity students, Connection conn) throws SQLException {
+    public void update(Students students, Connection conn) throws SQLException {
         PreparedStatement prst = null;
             prst = conn.prepareStatement(updateStudents);
             convertStudents(students, prst);
@@ -91,14 +91,14 @@ public class StudentsDaoImpl implements StudentsDao {
             prst.close();
     }
 
-    public List<StudentsEntity> getWithGroup(Connection conn) throws SQLException {
-        List<StudentsEntity> studentsList = new ArrayList<StudentsEntity>();
-        StudentsEntity students = new StudentsEntity();
-        GroupEntity group = new GroupEntity();
+    public List<Students> getWithGroup(Connection conn) throws SQLException {
+        List<Students> studentsList = new ArrayList<Students>();
+        Group group = new Group();
         Statement statement = null;
             statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(getWithGroup);
             while (rs.next()) {
+                Students students = new Students();
                 students.setFirstName(rs.getString("firstName"));
                 students.setLastName(rs.getString("lastName"));
                 group.setTeacher(rs.getString("teacher"));
