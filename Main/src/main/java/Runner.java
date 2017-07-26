@@ -21,7 +21,6 @@ public class Runner {
         group.setTeacher("Potapova");
         group.setGroupRoom(505);
         group.setSpecialSubj("Fisics");
-        group.setCounStud(29);
         
         Students students = new Students();
         students.setIdStudents(6);
@@ -55,7 +54,6 @@ public class Runner {
         group2.setTeacher("Potapkina");
         group2.setGroupRoom(705);
         group2.setSpecialSubj("Fisics");
-        group2.setCounStud(24);
 
        studentsService.update(students2);
        groupService.update(group2);

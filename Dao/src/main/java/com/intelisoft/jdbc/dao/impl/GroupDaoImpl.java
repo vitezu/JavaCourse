@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class GroupDaoImpl implements GroupDao {
     private final Logger logger = Logger.getLogger(GroupDaoImpl.class);
-    private final String addGroup = "INSERT INTO groups (nameGroup, teacher, groupRoom, specialSubj, counStud, idGroup) VALUES (?,?,?,?,?,?)";
-    private final String getAllGroups = "Select idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud from groups ";
-    private final String getByIdGroup = "SELECT idGroup, nameGroup, teacher, groupRoom, specialSubj, counStud FROM groups where idGroup=?";
-    private final String updateGroup = "UPDATE groups SET  nameGroup=?, teacher=?, groupRoom=?, specialSubj=?, counStud=? where idGroup=?";
+    private final String addGroup = "INSERT INTO groups (nameGroup, teacher, groupRoom, specialSubj, idGroup) VALUES (?,?,?,?,?)";
+    private final String getAllGroups = "Select idGroup, nameGroup, teacher, groupRoom, specialSubj from groups ";
+    private final String getByIdGroup = "SELECT idGroup, nameGroup, teacher, groupRoom, specialSubj FROM groups where idGroup=?";
+    private final String updateGroup = "UPDATE groups SET  nameGroup=?, teacher=?, groupRoom=?, specialSubj=? where idGroup=?";
     private final String deleteGroup = "DELETE FROM groups where idGroup=?";
     private final String getWithStudents = "SELECT  groups.nameGroup, groups.teacher, students.firstName, students.lastName FROM groups inner join students ON students.idGroup = groups.idGroup where groups.idGroup = 3";
     private Group convertRow(ResultSet rs) throws SQLException {
@@ -27,7 +27,6 @@ public class GroupDaoImpl implements GroupDao {
         group.setTeacher(rs.getString("teacher"));
         group.setGroupRoom(rs.getInt("groupRoom"));
         group.setSpecialSubj(rs.getString("specialSubj"));
-        group.setCounStud(rs.getInt("counStud"));
     return group;
     }
     private void convertGroup(Group group, PreparedStatement prst) throws SQLException {
@@ -35,8 +34,7 @@ public class GroupDaoImpl implements GroupDao {
         prst.setString(2, group.getTeacher());
         prst.setInt(3, group.getGroupRoom());
         prst.setString(4, group.getSpecialSubj());
-        prst.setInt(5, group.getCounStud());
-        prst.setInt(6, group.getIdGroup());
+        prst.setInt(5, group.getIdGroup());
         prst.executeUpdate();
     };
 
